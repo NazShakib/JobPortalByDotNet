@@ -1,0 +1,57 @@
+﻿@model JobSeekerModel
+@{
+    ViewData["Title"] = "Admin Page";
+    Layout = "~/Views/Shared/_JobSeekerLayout.cshtml";
+}
+
+<form enctype="multipart/form-data" method="post" asp-controller="JobSeeker" asp-action="Edit">
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <img src="~/Img/default.jpg" alt="" />
+                <div class="custom-file">
+                   @* Change Photo*@
+                    <input type="file" asp-for="@Model.Image" class="form-control custom-image-input" name="file" />
+                    @*<label class="custom-image-label">Choose Image...</label>*@
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input asp-for="@Model.Name" type="text" class="form-control" required value="@Model.Name">
+            </div>
+            <div class="form-group">
+                <label>Institute</label>
+                <input asp-for="@Model.Institute" type="text" class="form-control" required value="@Model.Institute">
+            </div>
+            <div class="form-group row">
+                <label asp-for="Cv" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input type="file" asp-for="@Model.Cv" class="form-control custom-file-input" name="file" />
+                    <label class="custom-file-label">Choose File...</label>
+                </div>
+            </div>
+            <button type="submit" class=" m-5 btn btn-primary btn-block"> Save Changes  </button>
+        </div>
+        @*<button type="submit" class="btn btn-primary btn-block"> Save Changes  </button>*@
+    </div>
+    
+
+    @section Scripts {
+        <script>
+            $(document).ready(function () {
+                $('.custom-image-input').on("change", function () {
+                    var fileName = $(this).val().split("\\").pop();
+                    $(this).next('.custom-image-label').html(fileName);
+                });
+
+                $(".custom-file-input").on("change", function () {
+                    var fileName = $(this).val().split("\\").pop();
+                    $(this).next('.custom-file-label').html(fileName);
+                });
+            });
+        </script>
+    }
+</form>
+

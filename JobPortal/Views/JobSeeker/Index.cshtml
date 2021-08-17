@@ -1,0 +1,29 @@
+﻿@model JobSeekerModel
+@{
+    ViewData["Title"] = "Admin Page";
+    Layout = "~/Views/Shared/_JobSeekerLayout.cshtml";
+}
+<a asp-controller="JobSeeker" asp-action="Edit" asp-route-id="@Model.Id">Edit Profile</a>
+<form method="post">
+        <div class="row">
+            <div class="col-4">
+                <img src="~/Img/default.jpg" alt="" />
+               @* <input type="file" name="file" />*@
+                <!--<div class="file btn btn-primary">
+                    Change Photo-->
+                   @* <input type="file" name="file" />*@
+                <!--</div>-->
+            </div>
+            <div class="col-6">
+                <div>
+                    Name: <span>@Model.Name</span>
+                </div>
+                  <div>
+                    Institute: <span>@Model.Institute</span>
+                </div>
+                <div>
+                    CV: <span>@Model.Cv</span>
+                </div>
+            </div>
+        </div>
+</form>
